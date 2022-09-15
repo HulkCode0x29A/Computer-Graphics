@@ -107,6 +107,9 @@ public class PixelScreen : MonoBehaviour
 
     public void SetPixel(int x, int y, Color color)
     {
+        if (x >= this.WidthCount || y >= this.HeightCount || x < 0 || y < 0)
+            return;
+
         pixelMaterials[x][y].color = color;
     }
 
