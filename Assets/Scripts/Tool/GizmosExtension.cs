@@ -51,6 +51,20 @@ public class GizmosExtension
         Gizmos.DrawLine(p4, p1);
     }
 
+    public static void DrawQuad(Vector3 center, float left, float right, float bottom, float top)
+    {
+        DrawQuad(center + new Vector3(right, top,0), center + new Vector3(left, top,0),
+            center + new Vector3(left,bottom,0), center + new Vector3(right, bottom,0));
+    }
+
+    public static void DrawQuad(Vector3 leftBottom, Vector3 rightTop)
+    {
+        Vector3 center = new Vector3(leftBottom.x+ (rightTop.x - leftBottom.x) / 2, 
+            leftBottom.y +(rightTop.y - leftBottom.y )/2, 
+            leftBottom.z + (rightTop.z - leftBottom.z)/2);
+        DrawQuad(center, leftBottom.x, rightTop.x, leftBottom.y, rightTop.y);
+    }
+
     
     public static void DrawOrthoCube(float left, float right, float bottom, float top, float zNear, float zFar)
     {
@@ -70,6 +84,12 @@ public class GizmosExtension
     public static void DrawNormalizedCube()
     {
         DrawWireCube(Vector3.zero, new Vector3(2,2,2));
+    }
+
+    public static void DrawNormalizedQuad(Vector3 center)
+    {
+        DrawQuad(center + new Vector3(1,1,0), center + new Vector3(-1,1,0), 
+            center + new Vector3(-1,-1,0), center+new Vector3(1,-1,0));
     }
     public static  void DrawLineWithSphere(Vector3 start, Vector3 end, float radius)
     {
