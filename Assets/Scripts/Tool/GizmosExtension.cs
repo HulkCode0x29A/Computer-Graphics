@@ -104,6 +104,21 @@ public class GizmosExtension
         Gizmos.DrawLine(p3, p1);
     }
 
+    public static  void DrawWirePolygon(Vector2[] points)
+    {
+        if (points.Length < 2)
+            return;
+        
+        for (int i = 0; i < points.Length - 1; i++)
+        {
+            Gizmos.DrawLine(points[i], points[i + 1]);
+        }
+
+        if (points.Length > 2)
+            Gizmos.DrawLine(points[points.Length - 1], points[0]);
+    }
+        
+
     public static void DrawWireCube(Vector3[] points)
     {
         Gizmos.DrawLine(points[0], points[1]);

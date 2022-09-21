@@ -53,15 +53,20 @@
     <UnityVersion>2020.3.23f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDPointReflectTransformation.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDRotate.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalViewing\TwoDimensionalMatrix.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalViewing\OrthogonalProjections.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDScaleMatrixByPoint.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDRigidbodyTransformation.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalViewing\TrigonometryExample.cs" />
     <Compile Include="Assets\Scripts\PrimitivesAlgorithms\Bresenham.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Translation.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDShearTransformation.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDTranslationMatrix.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\RotateParallelAxis.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalViewing\ThreeDimensionalViewingTest.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalViewing\NormalizedAndViewport.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Rotate.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalViewing\ThreeDimensionalMatrix.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDComposeTransformation.cs" />
@@ -76,6 +81,7 @@
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDScale.cs" />
     <Compile Include="Assets\Scripts\PrimitivesAlgorithms\DDA.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDScaleMatrixByDirection.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDLineReflectTransformation.cs" />
     <Compile Include="Assets\Scripts\PrimitivesAlgorithms\Ellipse.cs" />
     <Compile Include="Assets\Scripts\Tool\GizmosExtension.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDTranslation.cs" />
@@ -83,12 +89,11 @@
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDScaleMatrix.cs" />
     <Compile Include="Assets\Scripts\Tool\DebugDraw.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDRotateMatrixByPoint.cs" />
-    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDPointReflectTransformation.cs" />
-    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDLineReflectTransformation.cs" />
-    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDShearTransformation.cs" />
-    <Compile Include="Assets\Scripts\TwoDimensionalViewing\NormalizedAndViewport.cs" />
-    <Compile Include="Assets\Scripts\TwoDimensionalViewing\TwoDimensionalMatrix.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalViewing\BarycentricCoordinates.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalViewing\LiangBarskyLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\CohenSutherlandLineCutting.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalViewing\SutherlandHodgmanCutting.cs" />
+    <Compile Include="Assets\Scripts\Tool\Test.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

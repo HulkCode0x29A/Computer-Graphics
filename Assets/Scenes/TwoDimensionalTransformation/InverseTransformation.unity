@@ -238,7 +238,7 @@ MonoBehaviour:
   P1: {x: -1, y: 0}
   P2: {x: 1, y: 0}
   P3: {x: 0, y: 1}
-  Translation: {x: 3, y: 0}
+  Translation: {x: 3.6, y: -0.42}
   ScaleValue: {x: 0, y: 0}
   Angle: 0
 --- !u!4 &428607773

@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1: {x: 5, y: 5}
   P2: {x: 0, y: 0}
-  Tx: 1
+  Tx: 2.91
   Ty: 0
 --- !u!4 &541016774
 Transform:

@@ -8,9 +8,9 @@ public class PixelScreen : MonoBehaviour
 
     public Vector3 PixelSize = Vector3.one;
 
-    public  int WidthCount = 50;
+    public int WidthCount = 50;
 
-    public  int HeightCount = 50;
+    public int HeightCount = 50;
 
     public int ScreenWidth = 10;
 
@@ -35,13 +35,13 @@ public class PixelScreen : MonoBehaviour
                     pixels[i] = new GameObject[HeightCount];
                     pixelMaterials[i] = new Material[HeightCount];
                 }
-                    
+
                 GameObject temp = GameObject.Instantiate(PixelGo);
-                temp.name += "_"+i+"_" + j;
+                temp.name += "_" + i + "_" + j;
                 float w = i * (float)ScreenWidth / WidthCount;
-                float h = j* (float)ScreenHeight / HeightCount;
+                float h = j * (float)ScreenHeight / HeightCount;
                 temp.transform.SetParent(this.transform);
-                temp.transform.localPosition = new Vector3(w,h,0);
+                temp.transform.localPosition = new Vector3(w, h, 0);
                 temp.transform.localScale = PixelSize;
 
                 pixels[i][j] = temp;
@@ -50,25 +50,79 @@ public class PixelScreen : MonoBehaviour
         }
     }
 
-    public void SetLine(float x0, float y0, float x1, float y1, Color startColor,Color endColor)
+    public void SetTriangle(Vector2[] points, Color[] colors)
     {
-        SetLine((int)x0, (int)y0, (int)x1,(int)y1,  startColor,  endColor);
+        if (points.Length != 3 || colors.Length != 3)
+            return;
+
+        TriangleBarycentric(points, colors);
     }
 
-    public void SetLine(int x0,int y0, int x1, int y1, Color startColor, Color endColor)
+    private void TriangleBarycentric(Vector2[] points, Color[] colors)
+    {
+        Vector2 boxMin = new Vector2(float.MaxValue, float.MaxValue);
+        Vector2 boxMax = new Vector2(-float.MaxValue, -float.MaxValue);
+        Vector2 clamp = new Vector2(WidthCount - 1, HeightCount - 1);
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                //bottom-left
+                boxMin[j] = Mathf.Max(0, Mathf.Min(boxMin[j], points[i][j]));
+                //top-right
+                boxMax[j] = Mathf.Min(clamp[j], Mathf.Max(boxMax[j], points[i][j]));
+            }
+        }
+
+        //alculate the area of a triangle using the determinant
+        float area = points[0].x * points[1].y + points[1].x * points[2].y + points[2].x * points[0].y
+        - points[2].x * points[1].y - points[1].x * points[0].y - points[0].x * points[2].y;
+
+        Vector3 p;
+        for (p.x = boxMin.x; p.x < boxMax.x; p.x++)
+        {
+            for (p.y = boxMin.y; p.y < boxMax.y; p.y++)
+            {
+                //sub triangle area
+                float subArea0 = p.x * points[1].y + points[1].x * points[2].y + points[2].x * p.y
+                - points[2].x * points[1].y - points[1].x * p.y - p.x * points[2].y;
+                float subArea1 = points[0].x * p.y + p.x * points[2].y + points[2].x * points[0].y
+                - points[2].x * p.y - p.x * points[0].y - points[0].x * points[2].y;
+                //calculating barycentric coordinates
+                float alpha = subArea0 / area;
+                float beta = subArea1 / area;
+                float gamma = 1 - alpha - beta;
+                //determine if the pixel is in a triangle
+                if (alpha >= 0 && beta >= 0 && alpha + beta <= 1)
+                {
+                    Vector3 bcScreen = new Vector3(alpha, beta, gamma);
+                    // interpolation of color
+                    Color interpColor = alpha * colors[0] + beta * colors[1] + gamma * colors[2];
+                    SetPixel((int)p.x, (int)p.y, interpColor);
+                }
+            }
+        }
+    }
+
+    public void SetLine(float x0, float y0, float x1, float y1, Color startColor, Color endColor)
+    {
+        SetLine((int)x0, (int)y0, (int)x1, (int)y1, startColor, endColor);
+    }
+
+    public void SetLine(int x0, int y0, int x1, int y1, Color startColor, Color endColor)
     {
         if (!CheckPosition(x0, y0, x1, y1))
             return;
 
         bool steep = false;
-        if(Mathf.Abs(x0 - x1) < Mathf.Abs(y0 - y1))
+        if (Mathf.Abs(x0 - x1) < Mathf.Abs(y0 - y1))
         {
             Swap(ref x0, ref y0);
             Swap(ref x1, ref y1);
             steep = true;
         }
 
-        if(x0 > x1)//make it left-to-right
+        if (x0 > x1)//make it left-to-right
         {
             Swap(ref x0, ref x1);
             Swap(ref y0, ref y1);
@@ -82,7 +136,7 @@ public class PixelScreen : MonoBehaviour
             if (steep)
                 SetPixel(y, x, color);
             else
-                SetPixel(x,y,color);
+                SetPixel(x, y, color);
         }
     }
 
@@ -131,6 +185,6 @@ public class PixelScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

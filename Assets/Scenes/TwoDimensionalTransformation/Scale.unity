@@ -158,7 +158,7 @@ MonoBehaviour:
   - {x: 0, y: 1}
   Sx: 2
   Sy: 2
-  FixedPoint: {x: 0, y: 0}
+  FixedPoint: {x: -1, y: 0}
 --- !u!4 &185758581
 Transform:
   m_ObjectHideFlags: 0
