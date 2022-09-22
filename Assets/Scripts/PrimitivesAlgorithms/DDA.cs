@@ -23,7 +23,7 @@ public class DDA : MonoBehaviour
         int dy = yEnd - y0;
         int steps;
 
-        float xIncrement, yIncremetns, x = x0, y = y0;
+        float xIncrement, yIncrement, x = x0, y = y0;
 
         if (Mathf.Abs(dx) > Mathf.Abs(dy))
             steps = Mathf.Abs(dx);
@@ -31,13 +31,13 @@ public class DDA : MonoBehaviour
             steps = Mathf.Abs(dy);
 
         xIncrement = (float)dx / steps;
-        yIncremetns = (float)dy / steps;
+        yIncrement = (float)dy / steps;
 
         Screen.SetPixel(Mathf.RoundToInt(x) , Mathf.RoundToInt(y),Color.green);
         for (int k = 0; k < steps;k++)
         {
             x += xIncrement;
-            y += yIncremetns;
+            y += yIncrement;
             Screen.SetPixel(Mathf.RoundToInt(x),Mathf.RoundToInt(y), Color.green);
         }
     }

@@ -259,7 +259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e369f3f3e87d02545aa861f59a59a9a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Transformation: 0
+  Transformation: 1
   P1: {x: 2, y: 1}
   P2: {x: 1, y: 1}
   P3: {x: 1, y: 2}

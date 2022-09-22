@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
+
+    public PixelScreen Screen;
+
     public Vector3 P1;
 
     public Vector3 P2;
@@ -11,12 +14,8 @@ public class Test : MonoBehaviour
     public Vector3 P3;
 
 
-    private void OnDrawGizmos()
+    private void Start()
     {
-        Gizmos.color = Color.black;
-        Gizmos.DrawLine(P1, P2);
-
-        GizmosExtension.DrawLHCoordinate(Vector3.zero);
-        GizmosExtension.DrawWireTriangle(P1, P2, P3);
+        Screen.SetPixel(10,10,Color.green);
     }
 }
