@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Screen: {fileID: 1319675016}
   Start: {x: 0, y: 0}
-  End: {x: 10, y: 10}
+  End: {x: 10, y: 8}
   Slope: 0
 --- !u!1 &1319675015
 GameObject:

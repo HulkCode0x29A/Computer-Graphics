@@ -21,8 +21,8 @@ public class Bresenham : MonoBehaviour
         int dy = (int)(End.y - Start.y);
         Slope = (float)dy / dx;
 
-        //LineBresenham((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
-        LineBresenhamGeneral((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
+        LineBresenham((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
+        //LineBresenhamGeneral((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
         //LineBresenhamHigh((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
         //LineBresenhamLow((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
     }
@@ -61,6 +61,8 @@ public class Bresenham : MonoBehaviour
                 y++;
                 p += twoDyMinusDx;
             }
+
+            Screen.SetPixel(x, y, Color.green);
         }
     }
 
