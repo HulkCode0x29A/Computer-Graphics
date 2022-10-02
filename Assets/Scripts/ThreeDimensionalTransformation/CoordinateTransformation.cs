@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TransCoordinateSystem : MonoBehaviour
+public class CoordinateTransformation : MonoBehaviour
 {
     Matrix4x4 composeMatrix = Matrix4x4.identity;
 
@@ -28,7 +28,7 @@ public class TransCoordinateSystem : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(P1, 0.1f);
 
-        //right hand
+        
         Vector3 uz = (LightPos - P1).normalized;
         Vector3 uy = Vector3.up;
         Vector3 ux = Vector3.Cross(uy, uz).normalized;

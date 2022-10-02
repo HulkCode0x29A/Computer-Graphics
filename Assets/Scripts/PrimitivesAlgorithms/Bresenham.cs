@@ -22,6 +22,7 @@ public class Bresenham : MonoBehaviour
         Slope = (float)dy / dx;
 
         LineBresenham((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
+        //further read:https://en.wikipedia.org/wiki/Bresenham%27s_line_algorithm
         //LineBresenhamGeneral((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
         //LineBresenhamHigh((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);
         //LineBresenhamLow((int)Start.x, (int)Start.y, (int)End.x, (int)End.y);

@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDShearTransformation.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDTranslationMatrix.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\RotateParallelAxis.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDCoordinatesTransformation.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalViewing\ThreeDimensionalViewingTest.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\NormalizedAndViewport.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Rotate.cs" />
@@ -73,7 +74,7 @@
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\OtherTransformation.cs" />
     <Compile Include="Assets\Scripts\Tool\PixelScreen.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\RotateArbitraryAxis.cs" />
-    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\TransCoordinateSystem.cs" />
+    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\CoordinateTransformation.cs" />
     <Compile Include="Assets\Scripts\PrimitivesAlgorithms\Circle.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Scale.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDInverseTransformation.cs" />
@@ -94,7 +95,6 @@
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\LiangBarskyLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\CohenSutherlandLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\SutherlandHodgmanCutting.cs" />
-    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDCoordinatesTransformation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -32,35 +32,35 @@ public class Ellipse : MonoBehaviour
 
         EllipsePlotPoints(xCenter, yCenter, x, y);
         //Region 1
-        p = Mathf.RoundToInt(ry2 - (rx2 * ry) + (0.25f * rx2));
+        p = Mathf.RoundToInt(ry2 - (rx2 * ry) + (0.25f * rx2));// in the PPT formula 9
         while (px < py)
         {
             x++;
-            px += twoRy2;
+            px += twoRy2;//in the PPT complete steps 3 because  2r_y^2 times x =0 so Later iterations only need add twoRy2
             if (p < 0)
-                p += ry2 + px;
+                p += ry2 + px;//in the PPT formula 5
             else
             {
                 y--;
-                py -= twoRx2;
-                p += ry2 + px - py;
+                py -= twoRx2;//int the PPT complete steps 3
+                p += ry2 + px - py;//in the PPT formula 6
             }
 
             EllipsePlotPoints(xCenter, yCenter, x, y);
         }
 
         //Region 2
-        p = Mathf.RoundToInt(ry2 * (x + 0.5f) * (x + 0.5f) + rx2 * (y - 1) * (y - 1) - rx2 * ry2);
+        p = Mathf.RoundToInt(ry2 * (x + 0.5f) * (x + 0.5f) + rx2 * (y - 1) * (y - 1) - rx2 * ry2);//take last pos into ellipse equation
         while (y > 0)
         {
             y--;
             if (p > 0)
-                p += rx2 - py;
+                p += rx2 - py;//in PPT formula 13
             else
             {
                 x++;
                 px += twoRy2;
-                p += rx2 - py + px;
+                p += rx2 - py + px;//in PPT formula 14
             }
 
             EllipsePlotPoints(xCenter, yCenter, x, y);

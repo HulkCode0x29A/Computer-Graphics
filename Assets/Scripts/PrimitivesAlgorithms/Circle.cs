@@ -49,7 +49,7 @@ public class Circle : MonoBehaviour
    void CircleMidpoint(int xc, int yc, int radius)
     {
         CirclePos circlePos = new CirclePos();
-
+        //we round 5 over 4 to 1 beacause  all increments are integer
         int p = 1 - radius;//initial value for midoint
 
         circlePos.SetCoords(0,radius);//set coordinates for top point of circle

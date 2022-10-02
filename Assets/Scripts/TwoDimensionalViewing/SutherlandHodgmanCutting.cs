@@ -122,9 +122,10 @@ public class SutherlandHodgmanCutting : MonoBehaviour
     public void ClipPoint(Vector2 p, Boundary winEdge, Vector2 wMin, Vector2 wMax,
                           Dictionary<int, Vector2> pOut, ref int cnt, Dictionary<Boundary, Vector2> first, Dictionary<Boundary, Vector2> s)
     {
-        //debugIdnex++;
+        debugIdnex++;
         Vector2 iPt;
 
+        //first records the unprocessed points
         if (!first.ContainsKey(winEdge))
             first[winEdge] = p;
         else
@@ -142,6 +143,7 @@ public class SutherlandHodgmanCutting : MonoBehaviour
             }
         }
 
+        //s records the last point processed
         s[winEdge] = p;
 
         if (Inside(p, winEdge, wMin, wMax))
@@ -182,6 +184,7 @@ public class SutherlandHodgmanCutting : MonoBehaviour
 
     public int PolygonClipSuthHodg(Vector2 wMin, Vector2 wMax, int n, Dictionary<int, Vector2> pIn, Dictionary<int, Vector2> pOut)
     {
+        debugIdnex = -1;
         Dictionary<Boundary, Vector2> first = new Dictionary<Boundary, Vector2>();
         Dictionary<Boundary, Vector2> s = new Dictionary<Boundary, Vector2>();
         int k, cnt = 0;
