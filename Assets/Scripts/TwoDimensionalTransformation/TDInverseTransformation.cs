@@ -63,6 +63,7 @@ public class TDInverseTransformation : MonoBehaviour
         t3 = inverseTrans.MultiplyPoint(t3);
         Gizmos.color = Color.yellow;
         GizmosExtension.DrawWireTriangle(t1, t2, t3);
+
         //quiz try  inverse transformation for scale and rotate
     }
 }

@@ -331,8 +331,8 @@ MonoBehaviour:
   Points:
   - {x: 0, y: 0}
   - {x: 5, y: 5}
-  Pivot: {x: 2.5, y: 2.5}
-  Angle: 271.6
+  Pivot: {x: 0, y: 0}
+  Angle: 384.5
 --- !u!4 &1615583216
 Transform:
   m_ObjectHideFlags: 0

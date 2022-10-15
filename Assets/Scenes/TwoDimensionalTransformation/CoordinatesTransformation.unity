@@ -334,7 +334,7 @@ MonoBehaviour:
   LightRotate: 45
   DrawStandardBasis: 1
   DrawLightSpaceBasis: 1
-  DrawLightLine: 0
+  DrawLightLine: 1
   DrawWorldLine: 1
 --- !u!4 &1418575530
 Transform:

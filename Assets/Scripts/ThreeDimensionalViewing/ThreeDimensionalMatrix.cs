@@ -7,6 +7,7 @@ public class ThreeDimensionalMatrix
 {
     public static Matrix4x4 GetViewPortMatrix(int left, int right, int bottom ,int top)
     {
+        //in ppt matrix 9
         Matrix4x4 matrix = Matrix4x4.identity;
         matrix[0, 0] = (float)(right - left) / 2;
         matrix[0, 3] = (float)(right + left) / 2;
@@ -19,6 +20,7 @@ public class ThreeDimensionalMatrix
 
     public static Matrix4x4 GetProjectionMatrix(float fov, float aspect, float zNear, float zFar)
     {
+        //in ppt matrix 16
         zNear = -zNear;
         zFar = -zFar;
 
@@ -36,6 +38,7 @@ public class ThreeDimensionalMatrix
 
     public static Matrix4x4 GetProjectionMatrix(float left, float right, float bottom, float top, float zNear, float zFar)
     {
+        //in ppt matrx 15
         zNear = -zNear;
         zFar = -zFar;
 
@@ -62,6 +65,7 @@ public class ThreeDimensionalMatrix
     /// <param name="zFar"></param>
     public static Matrix4x4 GetOrthoMatrix(float left, float right, float bottom, float top, float zNear, float zFar)
     {
+        //in ppt matrix 1
         zNear = -zNear;
         zFar = -zFar;
         Matrix4x4 matrix = Matrix4x4.identity;

@@ -261,16 +261,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Screen: {fileID: 440513684}
   Method: 0
-  P1: {x: 3.83, y: 4, z: -8, w: 1}
-  P2: {x: -3, y: -3, z: -8, w: 1}
-  T1: {x: 3.83, y: 4, z: 7.5555553, w: 8}
-  T2: {x: -3, y: -3, z: 7.5555553, w: 8}
-  RealT1: {x: 0.47875, y: 0.5, z: 0.9444444}
-  RealT2: {x: -0.375, y: -0.375, z: 0.9444444}
+  P1: {x: -1, y: -1, z: -1, w: 1}
+  P2: {x: 10, y: 10, z: -10, w: 1}
+  T1: {x: -1, y: -1, z: -1.0000001, w: 1}
+  T2: {x: 10, y: 10, z: 10, w: 10}
+  RealT1: {x: -1, y: -1, z: -1.0000001}
+  RealT2: {x: 1, y: 1, z: 1}
   PerspectiveArg: {x: -1, y: 1, z: -1, w: 1}
   zNear: 1
   zFar: 10
-  Fov: 60
+  Fov: 90
   Aspect: 1
 --- !u!1 &440513683
 GameObject:

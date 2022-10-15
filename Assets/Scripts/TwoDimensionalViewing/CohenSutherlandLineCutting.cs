@@ -127,7 +127,7 @@ public class CohenSutherlandLineCutting : MonoBehaviour
 
                     if(Convert.ToBoolean(code1 & winLeftBitCode))
                     {
-                        p1.y += (winMin.x - p1.x) * m;
+                        p1.y += (winMin.x - p1.x) * m;//y=y0+(x-x0)*m
                         p1.x = winMin.x;
                     }
                     else
@@ -143,7 +143,7 @@ public class CohenSutherlandLineCutting : MonoBehaviour
                             {
                                 //need to update p1.x for nonvertical lines only
                                 if (p2.x != p1.x)
-                                    p1.x += (winMin.y - p1.y) / m;
+                                    p1.x += (winMin.y - p1.y) / m;//x=x0+(y-y0)/m
                                 p1.y = winMin.y;
                             }
                             else

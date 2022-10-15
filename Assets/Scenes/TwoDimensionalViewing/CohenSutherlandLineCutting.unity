@@ -237,7 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WinMin: {x: -4, y: -4}
   WinMax: {x: 4, y: 4}
-  Point1: {x: -5.62, y: 3}
+  Point1: {x: -5.97, y: 3}
   Point2: {x: 0.88, y: -5}
 --- !u!4 &1929349858
 Transform:

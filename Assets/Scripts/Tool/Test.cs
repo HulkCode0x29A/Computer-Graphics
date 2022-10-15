@@ -5,17 +5,16 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
 
-    public PixelScreen Screen;
-
-    public Vector3 P1;
-
-    public Vector3 P2;
-
-    public Vector3 P3;
-
+    private PixelScreen screen;
 
     private void Start()
     {
-        Screen.SetPixel(10,10,Color.green);
+        screen = this.GetComponent<PixelScreen>();
+        screen.SetPixel(20, 20, Color.green);
+    }
+
+    private void OnDrawGizmos()
+    {
+        
     }
 }

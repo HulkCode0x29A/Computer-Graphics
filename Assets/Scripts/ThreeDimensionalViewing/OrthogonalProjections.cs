@@ -14,8 +14,6 @@ public class OrthogonalProjections : MonoBehaviour
 
     public Vector3 P2 = new Vector3(0, 0, 0);
 
-    public Vector3 LightPos = new Vector3(5, 5, 5);
-
     public Vector3 T1;
 
     public Vector3 T2;

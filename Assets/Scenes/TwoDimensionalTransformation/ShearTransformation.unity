@@ -334,7 +334,7 @@ MonoBehaviour:
   P3: {x: 0, y: 0.5}
   P4: {x: 0, y: 0}
   ShearValue: 1.5
-  ShearRef: {x: -0.5, y: -0.5}
+  ShearRef: {x: -0.68, y: -0.51}
 --- !u!4 &1611696003
 Transform:
   m_ObjectHideFlags: 0

@@ -37,7 +37,7 @@ public class LiangBarskyLineCutting : MonoBehaviour
             else
             {
                 if (r > u1)
-                    u1 = r;
+                    u1 = r;//0 and the maximum value in r
             }
         }
         else
@@ -48,7 +48,7 @@ public class LiangBarskyLineCutting : MonoBehaviour
                 if (r < u1)
                     returnValue = false;
                 else if (r < u2)
-                    u2 = r;
+                    u2 = r;//the smallest value in 1 and r
             }
             else
             {

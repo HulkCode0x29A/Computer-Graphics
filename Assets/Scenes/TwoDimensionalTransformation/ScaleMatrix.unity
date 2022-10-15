@@ -155,7 +155,7 @@ MonoBehaviour:
   P1: {x: -1, y: 0}
   P2: {x: 1, y: 0}
   P3: {x: 0, y: 1}
-  ScaleValue: {x: 2.07, y: 2}
+  ScaleValue: {x: 2, y: 2}
 --- !u!4 &263442664
 Transform:
   m_ObjectHideFlags: 0
