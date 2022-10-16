@@ -49,7 +49,9 @@ public class ThreeDimensionalViewingTest : MonoBehaviour
     {
         if(drawFrustum)
         {
-            GizmosExtension.DrawFrustum(camera.fieldOfView, camera.aspect, camera.nearClipPlane, camera.farClipPlane);
+ 
+
+           GizmosExtension.DrawFrustum(OrthoArg.x, OrthoArg.y, OrthoArg.z, OrthoArg.w, zNear, zFar);
         }
         
         

@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\LiangBarskyLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\CohenSutherlandLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\SutherlandHodgmanCutting.cs" />
+    <Compile Include="Assets\Scripts\ThreeDimensionalViewing\CompleteViewingPipeline.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
