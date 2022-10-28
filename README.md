@@ -1,6 +1,7 @@
 ##### Computer-Graphics
 
 This project is a basic graphics implementation,use untiy as demonstration
+
 Unity version:2020.3.23f1 LTS
 
 2D transformation and viewing 
@@ -9,7 +10,7 @@ Unity version:2020.3.23f1 LTS
 
 Primitive algorithm
 
-<Image src="Image/Image4.png"> <Image src="Image/Image5.png"> <Image src="Image/Image6.png">
+<Image src="Image/Image4.png"> <Image src="Image/Image5.png"> 
 
 3D transformation and viewing 
 
