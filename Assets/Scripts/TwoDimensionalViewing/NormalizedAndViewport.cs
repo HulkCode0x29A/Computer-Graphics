@@ -43,7 +43,7 @@ public class NormalizedAndViewport : MonoBehaviour
         GizmosExtension.DrawLineWithSphere(P1,P2, 0.1f);
 
         composeMatrix = Matrix4x4.identity;
-        Matrix4x4 clipToNormalize = TwoDimensionalMatrix.GetClipToNormalizeMatrix(ClipWindowArg.x, ClipWindowArg.y, ClipWindowArg.z, ClipWindowArg.w);
+        Matrix4x4 clipToNormalize = MatrixUtil.GetWindowToNormsquareMatrix(ClipWindowArg.x, ClipWindowArg.y, ClipWindowArg.z, ClipWindowArg.w);
         composeMatrix = clipToNormalize * composeMatrix;
 
         T1 = clipToNormalize.MultiplyPoint(P1);
@@ -51,7 +51,7 @@ public class NormalizedAndViewport : MonoBehaviour
         Gizmos.color = Color.red;
         GizmosExtension.DrawLineWithSphere(new Vector3(T1.x , T1.y, -1),new Vector3(T2.x, T2.y,-1),0.1f);
 
-        Matrix4x4 normalizeToViewport = TwoDimensionalMatrix.GetNormalizeToViewportMatrix(0, Screen.WidthCount -1, 0,Screen.HeightCount -1);
+        Matrix4x4 normalizeToViewport = MatrixUtil.GetNormsquareToViewportMatrix(0, Screen.WidthCount -1, 0,Screen.HeightCount -1);
         composeMatrix = normalizeToViewport * composeMatrix;
         V1 = normalizeToViewport.MultiplyPoint(T1);
         V2 = normalizeToViewport.MultiplyPoint(T2);

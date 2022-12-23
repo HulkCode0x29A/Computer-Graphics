@@ -328,13 +328,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c257e188021c01a4780c2a04510dde66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Transformation: 2
-  P1: {x: 0.5, y: 0}
-  P2: {x: 0.5, y: 0.5}
-  P3: {x: 0, y: 0.5}
-  P4: {x: 0, y: 0}
-  ShearValue: 1.5
-  ShearRef: {x: -0.68, y: -0.51}
+  Transformation: 0
+  P1: {x: 0, y: 0}
+  P2: {x: 1, y: 0}
+  P3: {x: 1, y: 1}
+  P4: {x: 0, y: 1}
+  ShearValue: 0.5
+  ShearRef: {x: -1, y: -1}
 --- !u!4 &1611696003
 Transform:
   m_ObjectHideFlags: 0

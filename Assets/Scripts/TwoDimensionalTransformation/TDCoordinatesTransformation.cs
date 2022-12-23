@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class TDCoordinatesTransformation : MonoBehaviour
 {
-    public Vector3 LightPosition = new Vector3(1, 1, 0);
+    public Vector4 CameraPosition = new Vector4(0, 0, 0, 1);
+
+    public Vector4 ModelPosition = new Vector4(0, 0, 0, 1);
 
     public Vector3 P1;
 
@@ -12,90 +14,113 @@ public class TDCoordinatesTransformation : MonoBehaviour
 
     public int LightRotate;
 
+    public bool ConstructY;
+
     public bool DrawStandardBasis;
 
-    public bool DrawLightSpaceBasis;
+    public bool DrawCameraSpaceBasis;
 
-    public bool DrawLightLine;
-
-    public bool DrawWorldLine;
-
-    Matrix4x4 GetTranslationMatrix(Vector2 trans)
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 3] = trans.x;
-        matrix[1, 3] = trans.y;
-        return matrix;
-    }
-
-    public Matrix4x4 GetRotateMatrix(float theta)
-    {
-        theta = theta * Mathf.Deg2Rad;
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 0] = Mathf.Cos(theta);
-        matrix[0, 1] = -Mathf.Sin(theta);
-        matrix[1, 0] = Mathf.Sin(theta);
-        matrix[1, 1] = Mathf.Cos(theta);
-
-        return matrix;
-    }
-
-    public Matrix4x4 ConstructLightToWorldMatrix(Vector3 u, Vector3 v)
-    {
-        
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 0] = u.x;
-        matrix[0, 1] = u.y;
-        matrix[1, 0] = v.x;
-        matrix[1, 1] = v.y;
-        return matrix;
-
-    }
+    public bool DrawTransSpaceBasis;
 
     private void OnDrawGizmos()
+    {
+        if (ConstructY)
+            ConstructFromY();
+        else
+            ConstructFromX();
+    }
+
+    private void ConstructFromY()
     {
         if (DrawStandardBasis)
             GizmosExtension.DrawLHCoordinate(Vector3.zero);
 
-        Vector3 right = Vector3.right;
-        Matrix4x4 composeMatrix = Matrix4x4.identity;
-        Matrix4x4 lightRotate = GetRotateMatrix(LightRotate);
-        Matrix4x4 lightMove = GetTranslationMatrix(LightPosition);
-        composeMatrix = lightMove *lightRotate* composeMatrix;
-        Vector3 transRight = composeMatrix.MultiplyPoint(right);
-        Vector3 up = Vector3.up;
-        Vector3 transUp = composeMatrix.MultiplyPoint(up);
-
-        if (DrawLightSpaceBasis)
+        Vector4 v = (CameraPosition - ModelPosition).normalized;
+        Matrix4x4 rotatev = MatrixUtil.GetRotateZMatrix(-90);
+        Vector4 u = rotatev * v;
+        if (DrawCameraSpaceBasis)
         {
             Gizmos.color = Color.white;
-            Gizmos.DrawLine(LightPosition, transRight);
-            Gizmos.color = Color.black;
-            Gizmos.DrawLine(LightPosition,  transUp);
+            Gizmos.DrawSphere(CameraPosition, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(ModelPosition, 0.1f);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(CameraPosition, CameraPosition + v);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(CameraPosition, CameraPosition + u);
         }
 
-        if (DrawLightLine)
+        Matrix4x4 translationMatrix = MatrixUtil.GetTDTranslationMatrix(-CameraPosition);
+
+        //formula (1.13.6)
+        Matrix4x4 rotateAxisMatrix = Matrix4x4.identity;
+        rotateAxisMatrix[0, 0] = u.x;
+        rotateAxisMatrix[0, 1] = u.y;
+        rotateAxisMatrix[1, 0] = v.x;
+        rotateAxisMatrix[1, 1] = v.y;
+
+        Matrix4x4 composeMatrix = rotateAxisMatrix * translationMatrix;
+        Vector4 u1 = composeMatrix * u;
+        Vector4 v1 = composeMatrix * v;
+        Vector4 transCamera = composeMatrix * CameraPosition;
+        Vector4 transModel = composeMatrix * ModelPosition;
+
+        if (DrawTransSpaceBasis)
         {
-            Gizmos.color = Color.blue;
-            GizmosExtension.DrawLineWithSphere(P1, P2, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transCamera, v1);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transCamera, u1);
+            Gizmos.color = Color.white;
+            Gizmos.DrawSphere(transCamera, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(transModel, 0.1f);
         }
 
-        composeMatrix = Matrix4x4.identity;
-        Matrix4x4 lightBasisMove = GetTranslationMatrix(-LightPosition);
-        Vector3 originalLightUp = lightBasisMove.MultiplyPoint(transUp);
-        Vector3 v = originalLightUp.normalized;
-        Matrix4x4 rotateV = GetRotateMatrix(-90);
-        Vector3 u = rotateV.MultiplyPoint(v);
-        Matrix4x4 lightToWorld = ConstructLightToWorldMatrix(u,v);
-        composeMatrix = lightToWorld * lightBasisMove * composeMatrix; 
-        Vector3 t1 = composeMatrix.MultiplyPoint(P1); 
-        Vector3 t2 = composeMatrix.MultiplyPoint(P2) ;
+    }
 
-        if (DrawWorldLine)
+    private void ConstructFromX()
+    {
+        if (DrawStandardBasis)
+            GizmosExtension.DrawLHCoordinate(Vector3.zero);
+
+        Vector4 u = (CameraPosition - ModelPosition).normalized;
+        Matrix4x4 rotateu = MatrixUtil.GetRotateZMatrix(90);
+        Vector4 v = rotateu * u;
+
+        if (DrawCameraSpaceBasis)
         {
-            Gizmos.color = Color.blue;
-            GizmosExtension.DrawLineWithSphere(t1, t2, 0.1f);
+            Gizmos.color = Color.white;
+            Gizmos.DrawSphere(CameraPosition, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(ModelPosition, 0.1f);
+
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(CameraPosition, CameraPosition + v);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(CameraPosition, CameraPosition + u);
         }
-            
+
+        Matrix4x4 translationMatrix = MatrixUtil.GetTDTranslationMatrix(-CameraPosition);
+        Matrix4x4 rotateAxisMatrix = MatrixUtil.GetTDLookAtMatrix(CameraPosition, ModelPosition, v);
+        Matrix4x4 composeMatrix = rotateAxisMatrix * translationMatrix;
+
+        Vector4 u1 = composeMatrix * u;
+        Vector4 v1 = composeMatrix * v;
+        Vector4 transCamera = composeMatrix * CameraPosition;
+        Vector4 transModel = composeMatrix * ModelPosition;
+
+        if (DrawTransSpaceBasis)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transCamera, v1);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(transCamera, u1);
+            Gizmos.color = Color.white;
+            Gizmos.DrawSphere(transCamera, 0.1f);
+            Gizmos.color = Color.green;
+            Gizmos.DrawSphere(transModel, 0.1f);
+        }
     }
 }

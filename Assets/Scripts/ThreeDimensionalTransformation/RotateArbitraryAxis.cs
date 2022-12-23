@@ -15,27 +15,8 @@ public class RotateArbitraryAxis : MonoBehaviour
     public float Angle = 30f;
 
     public Vector3 AxisP1 = new Vector3(1, 1, 0);
+
     public Vector3 AxisP2 = new Vector3(2, 3, 0);
-
-    Matrix4x4 Translation(Vector3 move)
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 3] = move.x;
-        matrix[1, 3] = move.y;
-        matrix[2, 3] = move.z;
-        return matrix;
-    }
-
-    Matrix4x4 RotateZ(float theta)
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        float radians = theta * Mathf.Deg2Rad;
-        matrix[0, 0] = Mathf.Cos(radians);
-        matrix[0, 1] = -Mathf.Sin(radians);
-        matrix[1, 0] = Mathf.Sin(radians);
-        matrix[1, 1] = Mathf.Cos(radians);
-        return matrix;
-    }
 
     private void OnDrawGizmos()
     {
@@ -51,7 +32,7 @@ public class RotateArbitraryAxis : MonoBehaviour
         Vector3 u = Vector3.Normalize(AxisP2 - AxisP1);
         //move AxisP1 to (0,0)
         composeMatrix = Matrix4x4.identity;
-        Matrix4x4 transMatrix = Translation(new Vector3(-AxisP1.x, -AxisP1.y, -AxisP1.z));
+        Matrix4x4 transMatrix = MatrixUtil.GetTranslationMatrix(new Vector3(-AxisP1.x, -AxisP1.y, -AxisP1.z));
         composeMatrix = transMatrix * composeMatrix;
 
         //debug see normalize direction u
@@ -88,7 +69,7 @@ public class RotateArbitraryAxis : MonoBehaviour
         yRotateMatrix[2, 2] = d;//cosB value
 
         //now rotate axis toward z axis we only need roateZ Matrix
-        Matrix4x4 zRotateMatrix = RotateZ(Angle);
+        Matrix4x4 zRotateMatrix = MatrixUtil.GetRotateZMatrix(Angle);
 
         Matrix4x4 inverseMatrix = transMatrix.inverse * xRotateMatrix.inverse * yRotateMatrix.inverse;
 

@@ -26,28 +26,9 @@ public class TDShearTransformation : MonoBehaviour
 
     public Vector2 ShearRef = Vector2.zero;
 
-    public Matrix4x4 GetShearByOriginalMatrix(float shear)
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 1] = shear;
-        return matrix;
-    }
+  
 
-    public Matrix4x4 GetShearByYref(float shear, float yref)
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 1] = shear;
-        matrix[0, 3] = -shear * yref;
-        return matrix;
-    }
-
-    public Matrix4x4 GetShearByXref(float shear, float xref)
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[1, 0] = shear;
-        matrix[1, 3] = -shear * xref;
-        return matrix;
-    }
+    
 
 
     private void OnDrawGizmos()
@@ -60,13 +41,13 @@ public class TDShearTransformation : MonoBehaviour
         switch (Transformation)
         {
             case TransType.ShearByOriginal:
-                matrix = GetShearByOriginalMatrix(ShearValue);
+                matrix = MatrixUtil. GetShearByOriginalMatrix(ShearValue);
                 break;
             case TransType.ShearByYref:
-                matrix = GetShearByYref(ShearValue, ShearRef.y);
+                matrix = MatrixUtil.GetShearByYref(ShearValue, ShearRef.y);
                 break;
             case TransType.ShearByXref:
-                matrix = GetShearByXref(ShearValue, ShearRef.x);
+                matrix = MatrixUtil.GetShearByXref(ShearValue, ShearRef.x);
                 break;
             default:
                 break;

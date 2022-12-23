@@ -34,10 +34,11 @@ public class Bresenham : MonoBehaviour
     {
         int dx = Mathf.Abs(xEnd - x0);
         int dy = Mathf.Abs(yEnd - y0);
-        int p = 2 * dy - dx;
+        int p =  2 * dy - dx;
         int twoDy = 2 * dy, twoDyMinusDx = 2 * (dy - dx);
         int x, y;
 
+        //draw line from left to right
         if (x0 > xEnd)
         {
             x = xEnd;
@@ -56,11 +57,11 @@ public class Bresenham : MonoBehaviour
         {
             x++;
             if (p < 0)
-                p += twoDy;
+                p += twoDy;//formula (2.2.12)
             else
             {
                 y++;
-                p += twoDyMinusDx;
+                p += twoDyMinusDx;//formula (2.2.13)
             }
 
             Screen.SetPixel(x, y, Color.green);

@@ -18,25 +18,7 @@ public class TDLineReflectTransformation : MonoBehaviour
 
     public Vector2 P3 = new Vector2(1.75f, 2);
 
-    public Matrix4x4 GetReflectYEqualXMatrix()
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 0] = 0;
-        matrix[0, 1] = 1;
-        matrix[1, 0] = 1;
-        matrix[1, 1] = 0;
-        return matrix;
-    }
-
-    public Matrix4x4 GetReflectYEqualMinusXMatrix()
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 0] = 0;
-        matrix[0, 1] = -1;
-        matrix[1, 0] = -1;
-        matrix[1, 1] = 0;
-        return matrix;
-    }
+  
 
     private void OnDrawGizmos()
     {
@@ -48,13 +30,11 @@ public class TDLineReflectTransformation : MonoBehaviour
         switch (Transformation)
         {
             case TransType.RelfectYEqualX:
-                matrix = GetReflectYEqualXMatrix();
+                matrix =MatrixUtil. GetReflectYEqualXMatrix();
                 break;
             case TransType.RelfectYEqualMinusX:
-                matrix = GetReflectYEqualMinusXMatrix();
+                matrix = MatrixUtil.GetReflectYEqualMinusXMatrix();
                 break;
-            
-                
         }
 
         Vector2 t1 = matrix.MultiplyPoint(P1);

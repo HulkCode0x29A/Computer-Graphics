@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Translation : MonoBehaviour
 {
-    Matrix4x4 transMatrix = Matrix4x4.identity;
+   
 
     public Vector3 P1 = new Vector3(-1,0,0);
 
@@ -16,19 +16,15 @@ public class Translation : MonoBehaviour
   
     void Start()
     {
-        Debug.Log(transMatrix);
     }
 
 
     private void OnDrawGizmos()
     {
-        
-        transMatrix[0, 3] = Translate.x;
-        transMatrix[1, 3] = Translate.y;
-        transMatrix[2, 3] = Translate.z;
-
         Gizmos.color = Color.green;
         GizmosExtension.DrawWireTriangle(P1,P2,P3);
+
+        Matrix4x4 transMatrix = MatrixUtil.GetTranslationMatrix(Translate);
 
         Gizmos.color = Color.red;
         Vector3 t1 = transMatrix.MultiplyPoint(P1);

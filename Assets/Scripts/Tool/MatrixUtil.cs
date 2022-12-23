@@ -2,8 +2,71 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MatrixUtil 
+public class MatrixUtil
 {
+    /// <summary>
+    /// translation transformation
+    /// </summary>
+    /// <param name="trans"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetTDTranslationMatrix(Vector2 trans)
+    {
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 3] = trans.x;
+        matrix[1, 3] = trans.y;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Rotate about z axis
+    /// </summary>
+    /// <param name="angle"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetRotateZMatrix(float angle)
+    {
+        //formula (4.1.2)
+        float theta = angle* Mathf.Deg2Rad;
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = Mathf.Cos(theta);
+        matrix[0, 1] = -Mathf.Sin(theta);
+        matrix[1, 0] = Mathf.Sin(theta);
+        matrix[1, 1] = Mathf.Cos(theta);
+        return matrix;
+    }
+
+    /// <summary>
+    /// Rotate about x axis
+    /// </summary>
+    /// <param name="angle"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetRotateXMatrix(float angle)
+    {
+        //formula (4.1.6)
+        float theta = angle * Mathf.Deg2Rad;
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[1, 1] = Mathf.Cos(theta);
+        matrix[1, 2] = -Mathf.Sin(theta);
+        matrix[2, 1] = Mathf.Sin(theta);
+        matrix[2, 2] = Mathf.Cos(theta);
+        return matrix;
+    }
+
+    /// <summary>
+    /// Rotate about y axis
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetRotateYMatrix(float  angle)
+    {
+        //formula (4.1.8)
+        float theta = angle * Mathf.Deg2Rad;
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = Mathf.Cos(theta);
+        matrix[0, 2] = Mathf.Sin(theta);
+        matrix[2, 0] = -Mathf.Sin(theta);
+        matrix[2, 2] = Mathf.Cos(theta);
+
+        return matrix;
+    }
     /// <summary>
     /// Two dimensional reference point rotation
     /// </summary>
@@ -22,6 +85,274 @@ public class MatrixUtil
         matrix[1, 0] = Mathf.Sin(theta);
         matrix[1, 1] = Mathf.Cos(theta);
         matrix[1, 3] = point.y * (1 - Mathf.Cos(theta)) - point.x * Mathf.Sin(theta);
+
+        return matrix;
+    }
+
+    /// <summary>
+    /// Two dimensional reference point scaling
+    /// </summary>
+    /// <param name="point"></param>
+    /// <param name="scale"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetTDPointScaleMatrix(Vector2 point, Vector2 scale)
+    {
+        //formula (1.10.12)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = scale.x;
+        matrix[0, 3] = point.x * (1 - scale.x);
+        matrix[1, 1] = scale.y;
+        matrix[1, 3] = point.y * (1 - scale.y);
+        return matrix;
+    }
+
+    /// <summary>
+    /// Two dimensional directional scaling
+    /// </summary>
+    /// <param name="direction"></param>
+    /// <param name="scale"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetTDDirectionScaleMatrix(Vector2 direction, Vector2 scale)
+    {
+        //formula (1.10.14)
+        float angle = Vector2.Angle(direction, Vector2.right);
+        float theta = angle * Mathf.Deg2Rad;
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = scale.x * Mathf.Cos(theta) * Mathf.Cos(theta) + scale.y * Mathf.Sin(theta) * Mathf.Sin(theta);
+        matrix[0, 1] = (scale.y - scale.x) * Mathf.Cos(theta) * Mathf.Sin(theta);
+        matrix[1, 0] = (scale.y - scale.x) * Mathf.Cos(theta) * Mathf.Sin(theta);
+        matrix[1, 1] = scale.x * Mathf.Sin(theta) * Mathf.Sin(theta) + scale.y * Mathf.Cos(theta) * Mathf.Cos(theta);
+
+        return matrix;
+    }
+
+    /// <summary>
+    /// Scale-rotation-translation of two-dimensional composite transformation
+    /// </summary>
+    /// <param name="scale"></param>
+    /// <param name="angle"></param>
+    /// <param name="trans"></param>
+    /// <param name="point"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetTDPointTRSMatrix(Vector2 scale, float angle, Vector2 trans, Vector2 point)
+    {
+        //formula (1.10.16)
+        float theta = angle * Mathf.Deg2Rad;
+
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = scale.x * Mathf.Cos(theta);
+        matrix[0, 1] = -scale.y * Mathf.Sin(theta);
+        matrix[0, 3] = point.x * (1 - scale.x * Mathf.Cos(theta)) + scale.y * point.y * Mathf.Sin(theta) + trans.x;
+        matrix[1, 0] = scale.x * Mathf.Sin(theta);
+        matrix[1, 1] = scale.y * Mathf.Cos(theta);
+        matrix[1, 3] = point.y * (1 - scale.y * Mathf.Cos(theta)) - scale.x * point.x * Mathf.Sin(theta) + trans.y;
+
+        return matrix;
+    }
+
+    /// <summary>
+    /// Two dimensional rigid body transformation
+    /// </summary>
+    /// <param name="angle"></param>
+    /// <param name="trans"></param>
+    /// <param name="point"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetTDRigidbodyMatrix(float angle, Vector2 trans, Vector2 point)
+    {
+        //formula (1.10.22)
+        float theta = angle * Mathf.Deg2Rad;
+
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = Mathf.Cos(theta);
+        matrix[0, 1] = -Mathf.Sin(theta);
+        matrix[0, 3] = point.x * (1 - Mathf.Cos(theta)) + point.y * Mathf.Sin(theta) + trans.x;
+        matrix[1, 0] = Mathf.Sin(theta);
+        matrix[1,1]= Mathf.Cos(theta);
+        matrix[1, 3] = point.y * (1 - Mathf.Cos(theta)) - point.y * Mathf.Sin(theta) + trans.y;
+
+        return matrix;
+    }
+
+    /// <summary>
+    /// Two-dimensional lookat matrix
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
+    /// <param name="up"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetTDLookAtMatrix(Vector2 from, Vector2 to, Vector2 up)
+    {
+        Vector2 u = (from - to).normalized;
+        Vector2 v = up.normalized;
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = u.x;
+        matrix[0, 1] = u.y;
+        matrix[1, 0] = v.x;
+        matrix[1, 1] = v.y;
+
+        return matrix;
+    }
+
+    /// <summary>
+    /// Obtain the X-axis reflection matrix
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetReflectXMatrix()
+    {
+        //formula (1.11.1)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[1, 1] = -1;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Obtain the Y-axis reflection matrix
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetReflectYMatrix()
+    {
+        //formula (1.11.2)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = -1;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Obtain the X-axis and Y-axis reflection matrix
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetReflectXAndYMatrix()
+    {
+        //formula (1.11.3)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = -1;
+        matrix[1, 1] = -1;
+        return matrix;
+    }
+
+    /// <summary>
+    ///  Reflected by the line y = x
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetReflectYEqualXMatrix()
+    {
+        //formula (1.11.4)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = 0;
+        matrix[0, 1] = 1;
+        matrix[1, 0] = 1;
+        matrix[1, 1] = 0;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Reflected by the line y =- x
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetReflectYEqualMinusXMatrix()
+    {
+        //formula (1.11.5)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = 0;
+        matrix[0, 1] = -1;
+        matrix[1, 0] = -1;
+        matrix[1, 1] = 0;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Shear at the origin
+    /// </summary>
+    /// <param name="shear"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetShearByOriginalMatrix(float shear)
+    {
+        //formula (1.12.1)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 1] = shear;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Shear according to the line yref
+    /// </summary>
+    /// <param name="shear"></param>
+    /// <param name="yref"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetShearByYref(float shear, float yref)
+    {
+        //formula (1.12.3)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 1] = shear;
+        matrix[0, 3] = -shear * yref;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Shear according to the line xref
+    /// </summary>
+    /// <param name="shear"></param>
+    /// <param name="xref"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetShearByXref(float shear, float xref)
+    {
+        //formula (1.12.5)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[1, 0] = shear;
+        matrix[1, 3] = -shear * xref;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Gets the matrix of the window to the normalized square
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <param name="bottom"></param>
+    /// <param name="top"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetWindowToNormsquareMatrix(float left, float right, float bottom, float top)
+    {
+        //formula (3.0.9)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = 2 / (right - left);
+        matrix[0, 3] = -(right + left) / (right - left);
+        matrix[1, 1] = 2 / (top - bottom);
+        matrix[1, 3] = -(top + bottom) / (top - bottom);
+        return matrix;
+    }
+
+    /// <summary>
+    /// Gets the matrix of normalized square to viewport
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <param name="bottom"></param>
+    /// <param name="top"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetNormsquareToViewportMatrix(float left, float right, float bottom, float top)
+    {
+        //formula (3.0.10)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = (right - left) / 2;
+        matrix[0, 3] = (right + left) / 2;
+        matrix[1, 1] = (top - bottom) / 2;
+        matrix[1, 3] = (top + bottom) / 2;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Obtain translation matrix
+    /// </summary>
+    /// <param name="trans"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetTranslationMatrix(Vector3 trans)
+    {
+        //formula (4.0.2)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 3] = trans.x;
+        matrix[1, 3] = trans.y;
+        matrix[2, 3] = trans.z;
 
         return matrix;
     }

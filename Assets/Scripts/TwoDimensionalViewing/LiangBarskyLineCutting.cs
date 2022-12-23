@@ -31,9 +31,9 @@ public class LiangBarskyLineCutting : MonoBehaviour
         bool returnValue = true;
         if (p < 0.0)
         {
-            r = q / p;
+            r = q / p; //formula (3.2.8)
             if (r > u2)
-                returnValue = false;
+                returnValue = false;// if u1 > u2 line completely outside the clipping window
             else
             {
                 if (r > u1)
@@ -64,14 +64,14 @@ public class LiangBarskyLineCutting : MonoBehaviour
     void LineClipLiangBarsky(Vector2 wMin, Vector2 wMax, Vector2 p1, Vector2 p2)
     {
         float u1 = 0f, u2 = 1f, dx = p2.x - p1.x, dy;
-        if (CliptTest(-dx,p1.x - wMin.x, ref u1, ref u2))
+        if (CliptTest(-dx,p1.x - wMin.x, ref u1, ref u2))//formula (3.2.4)
         {
-            if (CliptTest(dx, wMax.x - p1.x, ref u1, ref u2))
+            if (CliptTest(dx, wMax.x - p1.x, ref u1, ref u2))//formula (3.2.5)
             {
                 dy = p2.y - p1.y;
-                if (CliptTest(-dy, p1.y - wMin.y, ref u1, ref u2))
+                if (CliptTest(-dy, p1.y - wMin.y, ref u1, ref u2))//formula (3.2.6)
                 {
-                    if(CliptTest(dy, wMax.y - p1.y, ref u1, ref u2))
+                    if(CliptTest(dy, wMax.y - p1.y, ref u1, ref u2))//formula (3.2.7)
                     {
                         if (u2 < 1.0)
                             p2 = new Vector2(p1.x + u2 * dx, p1.y + u2 * dy);

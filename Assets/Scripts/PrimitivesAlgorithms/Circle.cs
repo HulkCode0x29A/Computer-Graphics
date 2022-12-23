@@ -50,7 +50,7 @@ public class Circle : MonoBehaviour
     {
         CirclePos circlePos = new CirclePos();
         //we round 5 over 4 to 1 beacause  all increments are integer
-        int p = 1 - radius;//initial value for midoint
+        int p = 1 - radius;//formula (2.3.15)
 
         circlePos.SetCoords(0,radius);//set coordinates for top point of circle
 
@@ -60,11 +60,11 @@ public class Circle : MonoBehaviour
         {
             circlePos.IncrementX();
             if (p < 0)
-                p += 2 * circlePos.GetX() + 1;
+                p += 2 * circlePos.GetX() + 1;//formula (2.3.10)
             else
             {
                 circlePos.DecrementY();
-                p += 2 * (circlePos.GetX() - circlePos.GetY()) + 1;
+                p += 2 * (circlePos.GetX() - circlePos.GetY()) + 1;//formula (2.3.11)
             }
 
             CirclePlotPoints(xc,yc, circlePos);

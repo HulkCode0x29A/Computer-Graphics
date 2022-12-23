@@ -19,26 +19,7 @@ public class TDPointReflectTransformation : MonoBehaviour
 
     public Vector2 P3 = new Vector2(1, 2);
 
-    public Matrix4x4 GetReflectXMatrix()
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[1, 1] = -1;
-        return matrix;
-    }
-
-    public Matrix4x4 GetReflectYMatrix()
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 0] = -1;
-        return matrix;
-    }
-    public Matrix4x4 GetReflectXAndYMatrix()
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 0] = -1;
-        matrix[1, 1] = -1;
-        return matrix;
-    }
+    
     private void OnDrawGizmos()
     {
         GizmosExtension.DrawLHCoordinate(Vector3.zero);
@@ -49,13 +30,13 @@ public class TDPointReflectTransformation : MonoBehaviour
         switch (Transformation)
         {
             case TransType.RelfectX:
-                matrix = GetReflectXMatrix();
+                matrix =MatrixUtil. GetReflectXMatrix();
                 break;
             case TransType.ReflectY:
-                matrix = GetReflectYMatrix();
+                matrix = MatrixUtil.GetReflectYMatrix();
                 break;
             case TransType.ReflectXAndY:
-                matrix = GetReflectXAndYMatrix();
+                matrix = MatrixUtil.GetReflectXAndYMatrix();
                 break;
         }
 

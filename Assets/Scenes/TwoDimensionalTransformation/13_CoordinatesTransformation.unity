@@ -328,14 +328,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07bf45297f5985e48a73ecb51f24b5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LightPosition: {x: 1, y: 1, z: 0}
+  CameraPosition: {x: 3, y: 4, z: 0, w: 1}
+  ModelPosition: {x: 2, y: 3, z: 0, w: 1}
   P1: {x: -2, y: 1, z: 0}
   P2: {x: 1, y: -2, z: 0}
   LightRotate: 45
-  DrawStandardBasis: 1
-  DrawLightSpaceBasis: 1
-  DrawLightLine: 1
-  DrawWorldLine: 1
+  ConstructY: 0
+  DrawStandardBasis: 0
+  DrawCameraSpaceBasis: 1
+  DrawTransSpaceBasis: 1
 --- !u!4 &1418575530
 Transform:
   m_ObjectHideFlags: 0
@@ -344,7 +345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1418575528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

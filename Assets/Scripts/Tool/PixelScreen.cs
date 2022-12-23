@@ -74,6 +74,7 @@ public class PixelScreen : MonoBehaviour
             }
         }
 
+        //formula (3.4.5)
         //alculate the area of a triangle using the determinant
         float area = points[0].x * points[1].y + points[1].x * points[2].y + points[2].x * points[0].y
         - points[2].x * points[1].y - points[1].x * points[0].y - points[0].x * points[2].y;
@@ -83,20 +84,23 @@ public class PixelScreen : MonoBehaviour
         {
             for (p.y = boxMin.y; p.y < boxMax.y; p.y++)
             {
+                //formula (3.4.6)
                 //sub triangle area
                 float subArea0 = p.x * points[1].y + points[1].x * points[2].y + points[2].x * p.y
                 - points[2].x * points[1].y - points[1].x * p.y - p.x * points[2].y;
+
+                //formula (3.4.7)
                 float subArea1 = points[0].x * p.y + p.x * points[2].y + points[2].x * points[0].y
                 - points[2].x * p.y - p.x * points[0].y - points[0].x * points[2].y;
                 //calculating barycentric coordinates
                 float alpha = subArea0 / area;
                 float beta = subArea1 / area;
-                float gamma = 1 - alpha - beta;
+                float gamma = 1 - alpha - beta; //formula (3.4.9)
                 //determine if the pixel is in a triangle
                 if (alpha >= 0 && beta >= 0 && alpha + beta <= 1)
                 {
                     Vector3 bcScreen = new Vector3(alpha, beta, gamma);
-                    // interpolation of color
+                    // interpolation of color formula (3.4.11)
                     Color interpColor = alpha * colors[0] + beta * colors[1] + gamma * colors[2];
                     SetPixel((int)p.x, (int)p.y, interpColor);
                 }
