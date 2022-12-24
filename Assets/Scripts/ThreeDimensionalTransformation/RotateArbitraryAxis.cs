@@ -32,7 +32,7 @@ public class RotateArbitraryAxis : MonoBehaviour
         Vector3 u = Vector3.Normalize(AxisP2 - AxisP1);
         //move AxisP1 to (0,0)
         composeMatrix = Matrix4x4.identity;
-        Matrix4x4 transMatrix = MatrixUtil.GetTranslationMatrix(new Vector3(-AxisP1.x, -AxisP1.y, -AxisP1.z));
+        Matrix4x4 transMatrix = MatrixUtil.GetTranslationMatrix(new Vector3(-AxisP1.x, -AxisP1.y, -AxisP1.z));//formula (4.3.14)
         composeMatrix = transMatrix * composeMatrix;
 
         //debug see normalize direction u
@@ -48,10 +48,10 @@ public class RotateArbitraryAxis : MonoBehaviour
 
         //a = u.x   b = u1.y     c = u1.z
         float d = u1.magnitude;
-        float cOverd = u1.z / d;//cosA value
-        float bOverd = u1.y / d;//sinA value
+        float cOverd = u1.z / d;//cosA value formula (4.3.16)
+        float bOverd = u1.y / d;//sinA value formula (4.3.20)
 
-        Matrix4x4 xRotateMatrix = Matrix4x4.identity;
+        Matrix4x4 xRotateMatrix = Matrix4x4.identity; // formula (4.3.21)
         xRotateMatrix[1, 1] = cOverd;
         xRotateMatrix[1, 2] = -bOverd;
         xRotateMatrix[2, 1] = bOverd;
@@ -62,7 +62,7 @@ public class RotateArbitraryAxis : MonoBehaviour
         //Vector3 u2 = new Vector3(u.x, 0, d);
         //Gizmos.DrawLine(Vector3.zero, u2);
 
-        Matrix4x4 yRotateMatrix = Matrix4x4.identity;
+        Matrix4x4 yRotateMatrix = Matrix4x4.identity;// formula (4.3.28)
         yRotateMatrix[0, 0] = d;//cosB value
         yRotateMatrix[0, 2] = -u.x;//sinB value
         yRotateMatrix[2, 0] = u.x;//-sinB value
@@ -73,7 +73,7 @@ public class RotateArbitraryAxis : MonoBehaviour
 
         Matrix4x4 inverseMatrix = transMatrix.inverse * xRotateMatrix.inverse * yRotateMatrix.inverse;
 
-        composeMatrix = inverseMatrix * zRotateMatrix * yRotateMatrix * xRotateMatrix * composeMatrix;
+        composeMatrix = inverseMatrix * zRotateMatrix * yRotateMatrix * xRotateMatrix * composeMatrix; // formula (4.3.30)
 
         ////debug see how axis change 
         //Vector3 t1 = composeMatrix.MultiplyPoint(AxisP1);

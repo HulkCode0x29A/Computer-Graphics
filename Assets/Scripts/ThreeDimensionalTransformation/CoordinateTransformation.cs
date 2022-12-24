@@ -4,60 +4,51 @@ using UnityEngine;
 
 public class CoordinateTransformation : MonoBehaviour
 {
-    Matrix4x4 composeMatrix = Matrix4x4.identity;
+    public Vector3 Point;
 
-    public Vector3 P1 = new Vector3(0, 0, 0);
+    public Vector3 CameraPosition;
 
-    public Vector3 LightPos = new Vector3(5,5,5);
+    public bool DrawWolrdCoordinate;
 
-  
+    public bool DrawCameraCoordinate;
 
-    Matrix4x4 Translation(Vector3 move)
-    {
-        Matrix4x4 matrix = Matrix4x4.identity;
-        matrix[0, 3] = move.x;
-        matrix[1, 3] = move.y;
-        matrix[2, 3] = move.z;
-        return matrix;
-    }
-
+    public bool DrawConversionPoint;
     private void OnDrawGizmos()
     {
-        GizmosExtension.DrawLHCoordinate(Vector3.zero);
+        if (DrawWolrdCoordinate)
+            GizmosExtension.DrawLHCoordinate(Vector3.zero);
 
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(P1, 0.1f);
-
-        
-        Vector3 uz = (LightPos - P1).normalized;
+        Vector3 uz = (CameraPosition - Point).normalized;
         Vector3 uy = Vector3.up;
-        Vector3 ux = Vector3.Cross(uy, uz).normalized;
-        uy = Vector3.Cross(uz, ux).normalized;
+        Vector3 ux = Vector3.Cross(uy, uz);
+        uy = Vector3.Cross(uz, ux);
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(LightPos ,LightPos + uz);
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(LightPos, LightPos +ux);
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(LightPos, LightPos + uy);
+        if (DrawCameraCoordinate)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawSphere(Point, 0.1f);
 
-        composeMatrix = Matrix4x4.identity;
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(CameraPosition, CameraPosition + uz);
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(CameraPosition, CameraPosition + ux);
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(CameraPosition, CameraPosition + uy);
+        }
 
-        Matrix4x4 transMatrix = Translation(new Vector3(-LightPos.x, -LightPos.y, -LightPos.z));
-        Matrix4x4 basisMatrix = Matrix4x4.identity;
-        basisMatrix[0, 0] = ux.x;
-        basisMatrix[0, 1] = ux.y;
-        basisMatrix[0, 2] = ux.z;
-        basisMatrix[1, 0] = uy.x;
-        basisMatrix[1, 1] = uy.y;
-        basisMatrix[1, 2] = uy.z;
-        basisMatrix[2, 0] = uz.x;
-        basisMatrix[2, 1] = uz.y;
-        basisMatrix[2, 2] = uz.z;
-        composeMatrix = basisMatrix * transMatrix * composeMatrix;
 
-        Vector3 t1 = composeMatrix.MultiplyPoint(P1); ;
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(t1, 0.1f);
+        Matrix4x4 moveMatrix = MatrixUtil.GetTranslationMatrix(-CameraPosition);
+        Matrix4x4 rotateMatrix = MatrixUtil.GetLookAtMatrix(CameraPosition, Point, Vector3.up);
+
+        Matrix4x4 composeMatrix = rotateMatrix * moveMatrix;
+
+        if(DrawConversionPoint)
+        {
+            Vector3 newPoint = composeMatrix.MultiplyPoint(Point);
+      
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(newPoint, 0.1f);
+        }
+
     }
 }

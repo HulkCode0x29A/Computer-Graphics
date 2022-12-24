@@ -72,7 +72,6 @@
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Rotate.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalViewing\ThreeDimensionalMatrix.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDComposeTranslation.cs" />
-    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\OtherTransformation.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDComposeRotate.cs" />
     <Compile Include="Assets\Scripts\Tool\PixelScreen.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\RotateArbitraryAxis.cs" />
@@ -100,6 +99,9 @@
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\LiangBarskyLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\CohenSutherlandLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\SutherlandHodgmanCutting.cs" />
+    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\ComposeTransformation.cs" />
+    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Reflect.cs" />
+    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Shear.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

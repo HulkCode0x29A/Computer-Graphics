@@ -25,7 +25,7 @@ public class MatrixUtil
     public static Matrix4x4 GetRotateZMatrix(float angle)
     {
         //formula (4.1.2)
-        float theta = angle* Mathf.Deg2Rad;
+        float theta = angle * Mathf.Deg2Rad;
         Matrix4x4 matrix = Matrix4x4.identity;
         matrix[0, 0] = Mathf.Cos(theta);
         matrix[0, 1] = -Mathf.Sin(theta);
@@ -55,7 +55,7 @@ public class MatrixUtil
     /// Rotate about y axis
     /// </summary>
     /// <returns></returns>
-    public static Matrix4x4 GetRotateYMatrix(float  angle)
+    public static Matrix4x4 GetRotateYMatrix(float angle)
     {
         //formula (4.1.8)
         float theta = angle * Mathf.Deg2Rad;
@@ -167,7 +167,7 @@ public class MatrixUtil
         matrix[0, 1] = -Mathf.Sin(theta);
         matrix[0, 3] = point.x * (1 - Mathf.Cos(theta)) + point.y * Mathf.Sin(theta) + trans.x;
         matrix[1, 0] = Mathf.Sin(theta);
-        matrix[1,1]= Mathf.Cos(theta);
+        matrix[1, 1] = Mathf.Cos(theta);
         matrix[1, 3] = point.y * (1 - Mathf.Cos(theta)) - point.y * Mathf.Sin(theta) + trans.y;
 
         return matrix;
@@ -194,6 +194,33 @@ public class MatrixUtil
     }
 
     /// <summary>
+    /// Three-dimensional lookat matrix
+    /// </summary>
+    /// <param name="from"></param>
+    /// <param name="to"></param>
+    /// <param name="up"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetLookAtMatrix(Vector3 from, Vector3 to, Vector3 up)
+    {
+        Vector3 uz = (from - to).normalized;
+        Vector3 uy = up.normalized;
+        Vector3 ux = Vector3.Cross(uy, uz);
+        uy = Vector3.Cross(uz, ux);
+
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = ux.x;
+        matrix[0, 1] = ux.y;
+        matrix[0, 2] = ux.z;
+        matrix[1, 0] = uy.x;
+        matrix[1, 1] = uy.y;
+        matrix[1, 2] = uy.z;
+        matrix[2, 0] = uz.x;
+        matrix[2, 1] = uz.y;
+        matrix[2, 2] = uz.z;
+        return matrix;
+    }
+
+    /// <summary>
     /// Obtain the X-axis reflection matrix
     /// </summary>
     /// <returns></returns>
@@ -214,6 +241,18 @@ public class MatrixUtil
         //formula (1.11.2)
         Matrix4x4 matrix = Matrix4x4.identity;
         matrix[0, 0] = -1;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Obtain the Z-axis reflection matrix
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetReflectZMatrix()
+    {
+        //formula (4.6.1)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[2, 2] = -1;
         return matrix;
     }
 
@@ -304,6 +343,24 @@ public class MatrixUtil
     }
 
     /// <summary>
+    /// Three dimensional Z-axis shear
+    /// </summary>
+    /// <param name="shear"></param>
+    /// <param name="zref"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetShearByZref(float shearzx, float shearzy ,float zref)
+    {
+        //formula (4.7.1)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 2] = shearzx;
+        matrix[0, 3] = -shearzx * zref;
+        matrix[1, 2] = shearzy;
+        matrix[1, 3] = -shearzy * zref;
+
+        return matrix;
+    }
+
+    /// <summary>
     /// Gets the matrix of the window to the normalized square
     /// </summary>
     /// <param name="left"></param>
@@ -354,6 +411,36 @@ public class MatrixUtil
         matrix[1, 3] = trans.y;
         matrix[2, 3] = trans.z;
 
+        return matrix;
+    }
+
+    /// <summary>
+    /// Obtain scaling matrix
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetScaleMatrix(float sx, float sy, float sz)
+    {
+        //formula (4.4.1)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = sx;
+        matrix[1, 1] = sy;
+        matrix[2, 2] = sz;
+        return matrix;
+    }
+
+    /// <summary>
+    /// Obtain the scaling matrix for the point
+    /// </summary>
+    /// <returns></returns>
+    public static Matrix4x4 GetPointScaleMatrix(float sx, float sy, float sz, Vector3 point)
+    {
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = sx;
+        matrix[0, 3] = (1 - sx) * point.x;
+        matrix[1, 1] = sy;
+        matrix[1, 3] = (1 - sy) * point.y;
+        matrix[2, 2] = sz;
+        matrix[2, 3] = (1 - sz) * point.z;
         return matrix;
     }
 }
