@@ -47,7 +47,7 @@ public class PerspectiveProjections : MonoBehaviour
     
     void Update()
     {
-        Matrix4x4 viewportMatrix = ThreeDimensionalMatrix.GetViewPortMatrix(0, Screen.WidthCount - 1, 0, Screen.HeightCount - 1);
+        Matrix4x4 viewportMatrix = MatrixUtil.GetViewPortMatrix(0, Screen.WidthCount - 1, 0, Screen.HeightCount - 1);
         Vector3 startPos = viewportMatrix.MultiplyPoint(RealT1);
         Vector3 endPos = viewportMatrix.MultiplyPoint(RealT2);
         Color startColor = new Color(startPos.z, startPos.z, startPos.z);
@@ -80,11 +80,11 @@ public class PerspectiveProjections : MonoBehaviour
 
         if(Method == PerspectiveMethod.LRBT)
         {
-            projectionMatrix = ThreeDimensionalMatrix.GetProjectionMatrix(PerspectiveArg.x, PerspectiveArg.y, PerspectiveArg.z, PerspectiveArg.w, zNear, zFar);
+            projectionMatrix = MatrixUtil.GetProjectionMatrix(PerspectiveArg.x, PerspectiveArg.y, PerspectiveArg.z, PerspectiveArg.w, zNear, zFar);
         }
         else
         {
-            projectionMatrix = ThreeDimensionalMatrix.GetProjectionMatrix(Fov, Aspect, zNear, zFar);
+            projectionMatrix = MatrixUtil.GetProjectionMatrix(Fov, Aspect, zNear, zFar);
         }
   
         composeMatrix = composeMatrix * projectionMatrix;

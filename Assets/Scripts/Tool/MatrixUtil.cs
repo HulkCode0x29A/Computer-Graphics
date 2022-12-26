@@ -443,4 +443,108 @@ public class MatrixUtil
         matrix[2, 3] = (1 - sz) * point.z;
         return matrix;
     }
+
+    /// <summary>
+    /// Obtain viewport matrix
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <param name="bottom"></param>
+    /// <param name="top"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetViewPortMatrix(int left, int right, int bottom, int top)
+    {
+        //formula (3.0.10)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = (float)(right - left) / 2;
+        matrix[0, 3] = (float)(right + left) / 2;
+        matrix[1, 1] = (float)(top - bottom) / 2;
+        matrix[1, 3] = (float)(top + bottom) / 2;
+        matrix[2, 2] = 1.0f / 2.0f;
+        matrix[2, 3] = 1.0f / 2.0f;
+        return matrix;
+    }
+
+    /// <summary>
+    /// To be consistent with Unity and use the right hand coordinate system, 
+    /// we enter the Z coordinate as positive and take the inverse inside the method
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <param name="bottom"></param>
+    /// <param name="top"></param>
+    /// <param name="zNear"></param>
+    /// <param name="zFar"></param>
+    public static Matrix4x4 GetOrthoMatrix(float left, float right, float bottom, float top, float zNear, float zFar)
+    {
+        //formula (5.0.6)
+        zNear = -zNear;
+        zFar = -zFar;
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = 2 / (right - left);
+        matrix[0, 3] = -(right + left) / (right - left);
+        matrix[1, 1] = 2 / (top - bottom);
+        matrix[1, 3] = -(top + bottom) / (top - bottom);
+        matrix[2, 2] = (-2) / (zNear - zFar);
+        matrix[2, 3] = (zNear + zFar) / (zNear - zFar);
+        return matrix;
+    }
+
+
+    /// <summary>
+    /// The projection matrix is obtained from the field of ivew and aspect ratio
+    /// </summary>
+    /// <param name="fov"></param>
+    /// <param name="aspect"></param>
+    /// <param name="zNear"></param>
+    /// <param name="zFar"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetProjectionMatrix(float fov, float aspect, float zNear, float zFar)
+    {
+      
+        zNear = -zNear;
+        zFar = -zFar;
+
+        //formula (5.1.33)
+        float radians = (fov / 2) * Mathf.Deg2Rad;
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = (1 / Mathf.Tan(radians)) / aspect;
+        matrix[1, 1] = 1 / Mathf.Tan(radians);
+        matrix[2, 2] = (zNear + zFar) / (zNear - zFar);
+        matrix[2, 3] = -2 * zNear * zFar / (zNear - zFar);
+        matrix[3, 2] = -1;
+        matrix[3, 3] = 0;
+
+        return matrix;
+    }
+
+    /// <summary>
+    /// Get the projection matrix according to the clipping window
+    /// </summary>
+    /// <param name="left"></param>
+    /// <param name="right"></param>
+    /// <param name="bottom"></param>
+    /// <param name="top"></param>
+    /// <param name="zNear"></param>
+    /// <param name="zFar"></param>
+    /// <returns></returns>
+    public static Matrix4x4 GetProjectionMatrix(float left, float right, float bottom, float top, float zNear, float zFar)
+    {
+        
+        zNear = -zNear;
+        zFar = -zFar;
+
+        //formula (5.1.30)
+        Matrix4x4 matrix = Matrix4x4.identity;
+        matrix[0, 0] = -2 * zNear / (right - left);
+        matrix[0, 2] = (right + left) / (right - left);
+        matrix[1, 1] = -2 * zNear / (top - bottom);
+        matrix[1, 2] = (top + bottom) / (top - bottom);
+        matrix[2, 2] = (zNear + zFar) / (zNear - zFar);
+        matrix[2, 3] = -2 * zNear * zFar / (zNear - zFar);
+        matrix[3, 2] = -1;
+        matrix[3, 3] = 0;
+        return matrix;
+    }
+
 }

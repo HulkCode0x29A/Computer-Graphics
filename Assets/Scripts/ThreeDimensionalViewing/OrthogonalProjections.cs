@@ -26,7 +26,7 @@ public class OrthogonalProjections : MonoBehaviour
 
     void Start()
     {
-        viewportMatrix = ThreeDimensionalMatrix.GetViewPortMatrix(0, Screen.WidthCount - 1, 0, Screen.HeightCount - 1);
+        viewportMatrix = MatrixUtil.GetViewPortMatrix(0, Screen.WidthCount - 1, 0, Screen.HeightCount - 1);
         Screen.SetClearColor(Color.blue);
     }
 
@@ -54,7 +54,7 @@ public class OrthogonalProjections : MonoBehaviour
 
         composeMatrix = Matrix4x4.identity;
 
-        Matrix4x4 orthoMatrix = ThreeDimensionalMatrix.GetOrthoMatrix(OrthoArg.x, OrthoArg.y, OrthoArg.z, OrthoArg.w, zNear, zFar);
+        Matrix4x4 orthoMatrix = MatrixUtil.GetOrthoMatrix(OrthoArg.x, OrthoArg.y, OrthoArg.z, OrthoArg.w, zNear, zFar);
         composeMatrix = orthoMatrix * composeMatrix;
         T1 = composeMatrix.MultiplyPoint(P1);
         T2 = composeMatrix.MultiplyPoint(P2);

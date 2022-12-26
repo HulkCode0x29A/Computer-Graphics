@@ -64,13 +64,13 @@
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Translation.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDShearTransformation.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDComposeScale.cs" />
+    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Reflect.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDTranslationMatrix.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\RotateParallelAxis.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDCoordinatesTransformation.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalViewing\ThreeDimensionalViewingTest.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\NormalizedAndViewport.cs" />
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Rotate.cs" />
-    <Compile Include="Assets\Scripts\ThreeDimensionalViewing\ThreeDimensionalMatrix.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDComposeTranslation.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDComposeRotate.cs" />
     <Compile Include="Assets\Scripts\Tool\PixelScreen.cs" />
@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Scale.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDInverseTransformation.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDRotateMatrix.cs" />
+    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\ComposeTransformation.cs" />
     <Compile Include="Assets\Scripts\Tool\MatrixUtil.cs" />
     <Compile Include="Assets\Scripts\Tool\Test.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDScale.cs" />
@@ -97,11 +98,9 @@
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\BarycentricCoordinates.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalTransformation\TDPointScale.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\LiangBarskyLineCutting.cs" />
+    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Shear.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\CohenSutherlandLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\SutherlandHodgmanCutting.cs" />
-    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\ComposeTransformation.cs" />
-    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Reflect.cs" />
-    <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Shear.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

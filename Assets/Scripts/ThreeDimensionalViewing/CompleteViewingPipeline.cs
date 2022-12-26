@@ -50,7 +50,7 @@ public class CompleteViewingPipeline : MonoBehaviour
 
     void Update()
     {
-        Matrix4x4 viewportMatrix = ThreeDimensionalMatrix.GetViewPortMatrix(0, Screen.WidthCount - 1, 0, Screen.HeightCount - 1);
+        Matrix4x4 viewportMatrix = MatrixUtil.GetViewPortMatrix(0, Screen.WidthCount - 1, 0, Screen.HeightCount - 1);
         Vector2 screenP1 =  viewportMatrix.MultiplyPoint(RealT1);
         Vector2 screenP2 = viewportMatrix.MultiplyPoint(RealT2);
         Vector2 screenP3 = viewportMatrix.MultiplyPoint(RealT3);
@@ -87,7 +87,7 @@ public class CompleteViewingPipeline : MonoBehaviour
         Gizmos.DrawLine(CameraPosition, CameraPosition + uy);
 
         composeMatrix = Matrix4x4.identity;
-        Matrix4x4 cameraMoveMatrix = ThreeDimensionalMatrix.GetTranslationMatrix(CameraPosition);
+        Matrix4x4 cameraMoveMatrix = MatrixUtil.GetTranslationMatrix(CameraPosition);
         Matrix4x4 cameraRotateMatrix = Matrix4x4.identity;
         cameraRotateMatrix[0, 0] = ux.x;
         cameraRotateMatrix[0, 1] = ux.y;
@@ -120,7 +120,7 @@ public class CompleteViewingPipeline : MonoBehaviour
 
         //construct the observation matrix
         composeMatrix = Matrix4x4.identity;
-        Matrix4x4 axisMoveMatrix = ThreeDimensionalMatrix.GetTranslationMatrix(-CameraPosition);
+        Matrix4x4 axisMoveMatrix = MatrixUtil.GetTranslationMatrix(-CameraPosition);
         Matrix4x4 axisRotateMatrix = cameraRotateMatrix;
         composeMatrix = axisRotateMatrix * axisMoveMatrix * composeMatrix;
 
@@ -149,7 +149,7 @@ public class CompleteViewingPipeline : MonoBehaviour
         GizmosExtension.DrawFrustum(PerspectiveArg.x, PerspectiveArg.y, PerspectiveArg.z, PerspectiveArg.w, zNear, zFar);
 
         composeMatrix = Matrix4x4.identity;
-        Matrix4x4 projectionMatrix = ThreeDimensionalMatrix.GetProjectionMatrix(PerspectiveArg.x, PerspectiveArg.y, PerspectiveArg.z, PerspectiveArg.w, zNear, zFar);
+        Matrix4x4 projectionMatrix = MatrixUtil.GetProjectionMatrix(PerspectiveArg.x, PerspectiveArg.y, PerspectiveArg.z, PerspectiveArg.w, zNear, zFar);
         composeMatrix = composeMatrix * projectionMatrix;
 
         T1 = composeMatrix * T1;

@@ -33,10 +33,7 @@ public class ThreeDimensionalViewingTest : MonoBehaviour
 
     private void Start()
     {
-        Matrix4x4 matrix = Matrix4x4.Perspective(60, 1, 1, 100);
-        Debug.Log("s"+matrix);
-        matrix = ThreeDimensionalMatrix.GetProjectionMatrix(60,1,1,100);
-        Debug.Log("c"+matrix);
+      
 
     }
 
