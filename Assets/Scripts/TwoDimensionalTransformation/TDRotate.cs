@@ -17,6 +17,7 @@ public class TDRotate : MonoBehaviour
         theta = theta * Mathf.Deg2Rad;
         for (int i = 0; i < points.Length; i++)
         {
+            //formula (1.4.5)
             rotatePoints[i].x = pivot.x + (points[i].x - pivot.x) * Mathf.Cos(theta) - (points[i].y - pivot.y) * Mathf.Sin(theta);
             rotatePoints[i].y = pivot.y + (points[i].x - pivot.x) * Mathf.Sin(theta) + (points[i].y - pivot.y) * Mathf.Cos(theta);
         }

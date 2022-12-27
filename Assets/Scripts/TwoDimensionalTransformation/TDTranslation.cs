@@ -19,7 +19,7 @@ public class TDTranslation : MonoBehaviour
         Gizmos.color = Color.green;
         GizmosExtension.DrawLineWithSphere(P1, P2, 0.1f);
 
-        Vector3 t1 = new Vector3(P1.x + Tx, P1.y + Ty);
+        Vector3 t1 = new Vector3(P1.x + Tx, P1.y + Ty);//formula (1.3.1)
         Vector3 t2 = new Vector3(P2.x + Tx, P2.y + Ty);
 
         Gizmos.color = Color.red;

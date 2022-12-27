@@ -238,9 +238,8 @@ MonoBehaviour:
   P1: {x: -1, y: 0}
   P2: {x: 1, y: 0}
   P3: {x: 0, y: 1}
-  Translation: {x: 3.83, y: 0.09}
-  ScaleValue: {x: 0, y: 0}
-  Angle: 0
+  Translation: {x: 3.83, y: 0.05}
+  DrawConversion: 1
 --- !u!4 &428607773
 Transform:
   m_ObjectHideFlags: 0

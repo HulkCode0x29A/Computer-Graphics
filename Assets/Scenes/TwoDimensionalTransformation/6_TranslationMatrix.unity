@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   P1: {x: 3, y: 3}
   P2: {x: 0, y: 0}
-  Translation: {x: 2.44, y: 0.23}
+  Translation: {x: 2.74, y: -0.21}
 --- !u!4 &870257616
 Transform:
   m_ObjectHideFlags: 0

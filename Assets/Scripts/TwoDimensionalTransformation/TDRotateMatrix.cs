@@ -10,9 +10,10 @@ public class TDRotateMatrix : MonoBehaviour
 
     public float Angle;
 
-    public Matrix4x4 GetRotateMatrix(float theta)
+    public Matrix4x4 GetRotateMatrix(float angle)
     {
-        theta = theta * Mathf.Deg2Rad;
+        //formula (1.7.1)
+       float theta = angle * Mathf.Deg2Rad;
         Matrix4x4 matrix = Matrix4x4.identity;
         matrix[0, 0] = Mathf.Cos(theta);
         matrix[0, 1] = -Mathf.Sin(theta);

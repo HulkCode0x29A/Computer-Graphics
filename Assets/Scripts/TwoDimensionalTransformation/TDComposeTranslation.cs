@@ -24,10 +24,6 @@ public class TDComposeTranslation : MonoBehaviour
         return matrix;
     }
 
- 
-
-
-
     private void OnDrawGizmos()
     {
         GizmosExtension.DrawLHCoordinate(Vector3.zero);

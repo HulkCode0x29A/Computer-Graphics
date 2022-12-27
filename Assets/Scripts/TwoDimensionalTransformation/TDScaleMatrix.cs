@@ -14,6 +14,7 @@ public class TDScaleMatrix : MonoBehaviour
 
     public Matrix4x4 GetScaleMatrix(Vector2 scale)
     {
+        //formula (1.8.1)
         Matrix4x4 matrix = Matrix4x4.identity;
         matrix[0, 0] = scale.x;
         matrix[1, 1] = scale.y;

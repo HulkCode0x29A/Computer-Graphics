@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 263442664}
   - component: {fileID: 263442663}
   m_Layer: 0
-  m_Name: ScaleMatrix
+  m_Name: Script
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   P1: {x: -1, y: 0}
   P2: {x: 1, y: 0}
   P3: {x: 0, y: 1}
-  ScaleValue: {x: 2, y: 2}
+  ScaleValue: {x: 3, y: 3}
 --- !u!4 &263442664
 Transform:
   m_ObjectHideFlags: 0

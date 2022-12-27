@@ -101,6 +101,8 @@
     <Compile Include="Assets\Scripts\ThreeDimensionalTransformation\Shear.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\CohenSutherlandLineCutting.cs" />
     <Compile Include="Assets\Scripts\TwoDimensionalViewing\SutherlandHodgmanCutting.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\MatrixIntroduce.cs" />
+    <Compile Include="Assets\Scripts\TwoDimensionalTransformation\GizmosIntroduce.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

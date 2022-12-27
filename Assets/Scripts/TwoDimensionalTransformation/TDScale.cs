@@ -25,6 +25,7 @@ public class TDScale : MonoBehaviour
         Vector2[] newPos = new Vector2[p.Length];
         for (int i = 0; i < p.Length; i++)
         {
+            //formula (1.5.3)
             newPos[i].x = p[i].x * sx + fixedPoint.x * (1 - sx);
             newPos[i].y = p[i].y * sy + fixedPoint.y * (1 - sy);
         }

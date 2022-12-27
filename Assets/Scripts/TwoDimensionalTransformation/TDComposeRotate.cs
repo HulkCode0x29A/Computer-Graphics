@@ -19,6 +19,7 @@ public class TDComposeRotate : MonoBehaviour
 
     Matrix4x4 GetRotateMatrix(float theta)
     {
+        //formula (1.7.1)
         theta = theta * Mathf.Deg2Rad;
         Matrix4x4 matrix = Matrix4x4.identity;
         matrix[0, 0] = Mathf.Cos(theta);

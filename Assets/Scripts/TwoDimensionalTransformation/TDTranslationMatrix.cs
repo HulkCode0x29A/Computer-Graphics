@@ -12,6 +12,7 @@ public class TDTranslationMatrix : MonoBehaviour
 
     Matrix4x4 GetTranslationMatrix(Vector2 trans)
     {
+        //formula (1.6.1)
         Matrix4x4 matrix = Matrix4x4.identity;
         matrix[0, 3] = trans.x;
         matrix[1, 3] = trans.y;
@@ -26,7 +27,11 @@ public class TDTranslationMatrix : MonoBehaviour
         GizmosExtension.DrawLineWithSphere(P1, P2, 0.1f);
 
         Matrix4x4 transMatrix = GetTranslationMatrix(Translation);
-        Vector2 t1 = transMatrix.MultiplyPoint(P1);
+
+        //Vector2 newP1 = transMatrix * new Vector4(P1.x, P1.y, 0, 1);
+        //Vector2 t1 = transMatrix * newP1;
+
+        Vector2 t1 = transMatrix.MultiplyPoint( P1);
         Vector2 t2 = transMatrix.MultiplyPoint(P2);
 
         Gizmos.color = Color.red;
