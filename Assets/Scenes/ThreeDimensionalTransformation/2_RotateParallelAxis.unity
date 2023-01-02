@@ -155,7 +155,7 @@ MonoBehaviour:
   P1: {x: -1, y: 0, z: 0}
   P2: {x: 1, y: 0, z: 0}
   P3: {x: 0, y: 1, z: 0}
-  Angle: 96.31
+  Angle: 669.06
   AxisMove: -2
 --- !u!4 &904616727
 Transform:
@@ -165,7 +165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 904616725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.275862, y: -3.3159065, z: 10.718008}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

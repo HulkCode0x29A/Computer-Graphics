@@ -168,7 +168,7 @@ public class MatrixUtil
         matrix[0, 3] = point.x * (1 - Mathf.Cos(theta)) + point.y * Mathf.Sin(theta) + trans.x;
         matrix[1, 0] = Mathf.Sin(theta);
         matrix[1, 1] = Mathf.Cos(theta);
-        matrix[1, 3] = point.y * (1 - Mathf.Cos(theta)) - point.y * Mathf.Sin(theta) + trans.y;
+        matrix[1, 3] = point.y * (1 - Mathf.Cos(theta)) - point.x * Mathf.Sin(theta) + trans.y;
 
         return matrix;
     }
@@ -182,6 +182,7 @@ public class MatrixUtil
     /// <returns></returns>
     public static Matrix4x4 GetTDLookAtMatrix(Vector2 from, Vector2 to, Vector2 up)
     {
+        //formula (1.10.25)
         Vector2 u = (from - to).normalized;
         Vector2 v = up.normalized;
         Matrix4x4 matrix = Matrix4x4.identity;
@@ -202,6 +203,7 @@ public class MatrixUtil
     /// <returns></returns>
     public static Matrix4x4 GetLookAtMatrix(Vector3 from, Vector3 to, Vector3 up)
     {
+        //formula (4.8.1)
         Vector3 uz = (from - to).normalized;
         Vector3 uy = up.normalized;
         Vector3 ux = Vector3.Cross(uy, uz);
@@ -434,6 +436,7 @@ public class MatrixUtil
     /// <returns></returns>
     public static Matrix4x4 GetPointScaleMatrix(float sx, float sy, float sz, Vector3 point)
     {
+        //formula (4.4.4)
         Matrix4x4 matrix = Matrix4x4.identity;
         matrix[0, 0] = sx;
         matrix[0, 3] = (1 - sx) * point.x;

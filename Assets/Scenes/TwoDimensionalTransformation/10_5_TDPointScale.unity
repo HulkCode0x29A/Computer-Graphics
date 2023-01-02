@@ -346,4 +346,4 @@ MonoBehaviour:
   P2: {x: 0, y: 1, z: 0, w: 1}
   P3: {x: 1, y: 2, z: 0, w: 1}
   FixedPoint: {x: 1, y: 1.5}
-  Scale: {x: 0.5, y: 0.5}
+  Scale: {x: 2, y: 2}

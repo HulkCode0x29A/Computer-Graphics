@@ -202,9 +202,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Screen: {fileID: 255113744}
-  P1: {x: -5, y: -5, z: -1}
+  P1: {x: -1.93, y: -5, z: -1}
   P2: {x: 5, y: 5, z: -10}
-  T1: {x: -1, y: -1, z: -1}
+  T1: {x: -0.386, y: -1, z: -1}
   T2: {x: 1, y: 1, z: 1}
   OrthoArg: {x: -5, y: 5, z: -5, w: 5}
   zNear: 1

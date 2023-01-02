@@ -155,8 +155,8 @@ MonoBehaviour:
   P1: {x: -1, y: 0, z: 0, w: 1}
   P2: {x: 1, y: 0, z: 0, w: 1}
   P3: {x: 0, y: 1, z: 0, w: 1}
-  Angle: 16.19
-  drawOriginalAxis: 1
+  Angle: 30
+  drawOriginalAxis: 0
   drawRoateAxis: 1
   drawRotateTriangle: 1
 --- !u!4 &738003062

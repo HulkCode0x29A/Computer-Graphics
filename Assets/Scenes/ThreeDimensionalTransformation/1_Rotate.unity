@@ -155,8 +155,8 @@ MonoBehaviour:
   P1: {x: -1, y: 0, z: 0}
   P2: {x: 1, y: 0, z: 0}
   P3: {x: 0, y: 1, z: 0}
-  Axis: 1
-  Angle: 64.5
+  Axis: 2
+  Angle: 708.2
 --- !u!4 &340427823
 Transform:
   m_ObjectHideFlags: 0

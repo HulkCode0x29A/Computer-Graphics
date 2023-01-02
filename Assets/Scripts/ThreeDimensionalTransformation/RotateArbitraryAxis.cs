@@ -43,7 +43,7 @@ public class RotateArbitraryAxis : MonoBehaviour
         Vector3 u1 = new Vector3(0, u.y, u.z);
 
         //debug see u projection  on to yz plane
-        //Gizmos.color = Color.grey;
+        //Gizmos.color = Color.black;
         //Gizmos.DrawLine(Vector3.zero, u1);
 
         //a = u.x   b = u1.y     c = u1.z
@@ -75,7 +75,7 @@ public class RotateArbitraryAxis : MonoBehaviour
 
         composeMatrix = inverseMatrix * zRotateMatrix * yRotateMatrix * xRotateMatrix * composeMatrix; // formula (4.3.30)
 
-        ////debug see how axis change 
+        //debug see how axis change 
         //Vector3 t1 = composeMatrix.MultiplyPoint(AxisP1);
         //Vector3 t2 = composeMatrix.MultiplyPoint(AxisP2);
         //Gizmos.color = Color.black;
@@ -86,12 +86,6 @@ public class RotateArbitraryAxis : MonoBehaviour
         Vector3 p3 = composeMatrix.MultiplyPoint(P3);
         Gizmos.color = Color.red;
         GizmosExtension.DrawWireTriangle(p1, p2, p3);
-
-        //composeMatrix = yRotateMatrix * composeMatrix;
-        //t1 = composeMatrix.MultiplyPoint(AxisP1);
-        //t2 = composeMatrix.MultiplyPoint(AxisP2);
-        //Gizmos.color = Color.black;
-        //Gizmos.DrawLine(t1, t2);
     }
 
 }

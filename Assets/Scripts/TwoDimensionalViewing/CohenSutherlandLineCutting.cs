@@ -23,7 +23,7 @@ public class CohenSutherlandLineCutting : MonoBehaviour
 
     private void Start()
     {
-      
+       
     }
 
     private void OnDrawGizmos()
@@ -94,6 +94,7 @@ public class CohenSutherlandLineCutting : MonoBehaviour
 
     void LineClipCohSuth(Vector2 winMin, Vector2 winMax, Vector2 p1, Vector2 p2)
     {
+        
         int code1, code2;
         bool done = false;
         bool plotLine = false;

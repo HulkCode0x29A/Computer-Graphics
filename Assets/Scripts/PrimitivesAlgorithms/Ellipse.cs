@@ -97,7 +97,7 @@ public class Ellipse : MonoBehaviour
             {
                 x++;
 
-                px += twoRy2;
+                px += twoRy2;//formula (2.4.27)
                 p += rx2 - py + px;//formula (2.4.25)
             }
 

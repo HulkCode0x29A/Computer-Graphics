@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c257e188021c01a4780c2a04510dde66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Transformation: 0
+  Transformation: 2
   P1: {x: 0, y: 0}
   P2: {x: 1, y: 0}
   P3: {x: 1, y: 1}

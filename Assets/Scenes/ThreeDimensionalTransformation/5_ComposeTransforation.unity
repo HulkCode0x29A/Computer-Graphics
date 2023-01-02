@@ -344,6 +344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CubeCenter: {x: 1, y: 1, z: 1}
   CubeSize: {x: 1, y: 1, z: 1}
-  Translation: {x: 2.15, y: 0.35, z: 0.18}
+  Translation: {x: 2.1, y: 0.35, z: 0.18}
   RotateXAngle: 90
-  Scale: {x: 1, y: 1, z: 1}
+  Scale: {x: 2, y: 2, z: 2}

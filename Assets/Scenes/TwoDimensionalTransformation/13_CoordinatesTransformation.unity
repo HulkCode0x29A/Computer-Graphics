@@ -210,7 +210,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071138868}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 7.02, z: 0}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -333,7 +333,7 @@ MonoBehaviour:
   P1: {x: -2, y: 1, z: 0}
   P2: {x: 1, y: -2, z: 0}
   LightRotate: 45
-  ConstructY: 0
+  ConstructY: 1
   DrawStandardBasis: 0
   DrawCameraSpaceBasis: 1
   DrawTransSpaceBasis: 1

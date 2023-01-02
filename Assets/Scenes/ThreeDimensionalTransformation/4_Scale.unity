@@ -158,7 +158,7 @@ MonoBehaviour:
   Sy: 2
   Sz: 2
   ScalePoint: {x: 1, y: 1, z: 1}
-  ScaleEnum: 0
+  ScaleEnum: 1
 --- !u!4 &171184844
 Transform:
   m_ObjectHideFlags: 0
